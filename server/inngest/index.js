@@ -1,5 +1,7 @@
-import { Inngest } from "inngest";
+import { Inngest, functions } from "inngest";
 import User from "../models/User.js";
+import inngest from './inngest/index.js';
+
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "pingup-app" });
 //Ingest Function to save user data to a database
