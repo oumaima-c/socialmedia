@@ -2,11 +2,14 @@ import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
 import connectDB from './configs/db.js';
-import { Inngest,functions } from './inngest/index.js';
-import {serve} from 'inngest/express'
-
+import { functions } from './inngest/index.js';   // your own functions
+import { Inngest } from "inngest";    
+import { serve } from 'inngest/express';
 
 const app = express();
+
+// ✅ create Inngest client (you were missing this part)
+const inngest = new Inngest({ name: "my-app" });
 
 // Connect to DB before starting the server
 const startServer = async () => {
@@ -19,7 +22,8 @@ const startServer = async () => {
 
     // routes
     app.get('/', (req, res) => res.send('Server is running'));
-app.use('/api/inngest',serve({ client: inngest, functions }))
+    app.use('/api/inngest', serve({ client: inngest, functions }));
+
     // port
     const PORT = process.env.PORT || 4000;
     app.listen(PORT, () => 
