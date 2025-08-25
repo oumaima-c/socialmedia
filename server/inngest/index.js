@@ -11,10 +11,10 @@ const syncUserCreation = inngest.createFunction(
   async ({ event }) => {
     const { id, first_name, last_name, email_addresses, image_url } = event.data;
 
-    let username = email_addresses[0].email_address.split("@")[0]; // ✅ fixed property name
+    let username = email_addresses[0].email_address.split('@')[0]; // ✅ fixed property name
 
     // Check availability of username
-    let user = await User.findOne({ username });
+    const user = await User.findOne({ username });
     if (user) {
       username = username + Math.floor(Math.random() * 10000);
     }
@@ -51,7 +51,7 @@ const syncUserUpdation = inngest.createFunction(
 
 // ✅ Inngest function to delete user from database
 const syncUserDeletion = inngest.createFunction(
-  { id: "delete-user-from-clerk" },
+  { id: "delete-user-with-clerk" },
   { event: "clerk/user.deleted" },
   async ({ event }) => {
     const { id } = event.data;
