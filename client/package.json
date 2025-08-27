@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.43.0",
+    "@clerk/express": "^1.7.25",
     "@tailwindcss/vite": "^4.1.12",
     "cors": "^2.8.5",
     "lucide-react": "^0.540.0",
